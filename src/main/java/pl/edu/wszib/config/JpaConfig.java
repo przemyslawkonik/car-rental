@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"pl.edu.wszib.repository"})
+@EnableJpaRepositories(basePackages = {"pl.edu.wszib.domain.repository"})
 public class JpaConfig {
 
     @Bean
@@ -32,7 +32,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder, DataSource dataSource, Environment env) {
         return builder
                 .dataSource(dataSource)
-                .packages("pl/edu/wszib/entity")
+                .packages("pl/edu/wszib/domain/entity")
                 .properties(jpaProperties(env))
                 .build();
     }
