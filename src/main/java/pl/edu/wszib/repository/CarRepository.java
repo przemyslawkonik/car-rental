@@ -6,4 +6,5 @@ import pl.edu.wszib.entity.Car;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
+
 }
