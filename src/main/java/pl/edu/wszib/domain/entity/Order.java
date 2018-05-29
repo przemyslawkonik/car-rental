@@ -1,4 +1,4 @@
-package pl.edu.wszib.entity;
+package pl.edu.wszib.domain.entity;
 
 import javax.persistence.*;
 import java.util.Date;
