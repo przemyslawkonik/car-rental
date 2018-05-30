@@ -1,4 +1,4 @@
 package pl.edu.wszib.command;
 
-public interface Command {
+public class Command<R extends CommandResult> {
 }

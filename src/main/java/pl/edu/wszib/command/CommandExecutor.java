@@ -1,5 +1,5 @@
 package pl.edu.wszib.command;
 
-public interface CommandExecutor<T, R> {
-    R execute(T command);
+public interface CommandExecutor<C extends Command, R extends CommandResult> {
+    R execute(C command);
 }
