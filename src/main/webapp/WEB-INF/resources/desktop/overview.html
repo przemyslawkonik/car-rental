@@ -8,7 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
-<body ng-app="">
+<body ng-app="desktop" ng-controller="overview-manager-controller">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -33,11 +33,13 @@
         </div>
     </div>
     <div class="col-sm-8">
-        <div class="menu-content"></div>
+        <div class="menu-content" ng-include="menuContent"></div>
     </div>
     <div class="col-sm-2">
         <div class="container"></div>
     </div>
 </div>
 </body>
+<script src="resources/desktop/overview-manager.js"></script>
+<script src="resources/menu/main-menu-manager.js"></script>
 </html>
