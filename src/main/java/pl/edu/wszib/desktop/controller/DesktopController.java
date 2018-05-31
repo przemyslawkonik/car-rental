@@ -1,4 +1,4 @@
-package pl.edu.wszib.controller;
+package pl.edu.wszib.desktop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class DesktopController {
 
     @RequestMapping("")
     @GetMapping
-    public String homepage() {
-        return "home";
+    public String showDesktopOverview() {
+        return "desktop/overview";
     }
 }

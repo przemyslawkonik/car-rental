@@ -1,0 +1,24 @@
+.menu {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 20%;
+}
+
+.menu button {
+    padding: 20px 15px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.menu button:hover {
+    background-color: #ddd;
+}
+
+.menu button.active {
+    background-color: #ccc;
+}
+
+.menu-content {
+    border: 1px solid #ccc;
+}
