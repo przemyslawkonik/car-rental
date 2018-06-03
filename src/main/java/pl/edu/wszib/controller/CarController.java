@@ -1,6 +1,7 @@
 package pl.edu.wszib.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.edu.wszib.domain.entity.CarType;
 
 @RestController
 @RequestMapping("/cars")
@@ -32,15 +33,15 @@ public class CarController {
         return "car by engine capacity";
     }
 
-    @RequestMapping(value = "/enginetype")
+    @RequestMapping(value = "/{enginetype}")
     @GetMapping
-    public String getCarByEngineType() {
+    public String getCarByEngineType(@PathVariable("enginetype") String enginetype) {
         return "car by engine type";
     }
 
-    @RequestMapping(value = "/car")
+    @RequestMapping(value = "/{car}")
     @PutMapping
-    public String addCar() {
+    public String addCar(@PathVariable("car") CarType car) {
         return "added car";
     }
 
