@@ -12,7 +12,14 @@ public class Customer {
     private String name;
     private String surname;
     private String phone;
+    @Column(unique = true)
     private String email;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private SystemRole systemRole;
+    private String password;
+    @Transient
+    private String passwordConfirmation;
 
     public Integer getId() {
         return id;
@@ -52,5 +59,29 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public SystemRole getSystemRole() {
+        return systemRole;
+    }
+
+    public void setSystemRole(SystemRole systemRole) {
+        this.systemRole = systemRole;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 }
