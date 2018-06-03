@@ -1,61 +1,58 @@
 package pl.edu.wszib.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/cars")
 public class CarController {
 
     //TODO: write implementation to all those methods
 
-    @RequestMapping(value = "/id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}")
     @GetMapping
-    public String getCarById() {
+    public String getCarById(@PathVariable("id") Integer id) {
         return "car by id";
     }
 
-    @RequestMapping(value = "/brand", method = RequestMethod.GET)
+    @RequestMapping(value = "/{brand}")
     @GetMapping
-    public String getCarByBrand() {
+    public String getCarByBrand(@PathVariable("brand") String brand) {
         return "car by brand";
     }
 
-    @RequestMapping(value = "/brand/model", method = RequestMethod.GET)
+    @RequestMapping(value = "/brand/{model}")
     @GetMapping
-    public String getCarByModel() {
+    public String getCarByModel(@PathVariable("model") String model) {
         return "car by model";
     }
 
-    @RequestMapping(value = "/enginecapacity", method = RequestMethod.GET)
+    @RequestMapping(value = "/{enginecapacity}")
     @GetMapping
-    public String getCarByEngineCapacity() {
+    public String getCarByEngineCapacity(@PathVariable("enginecapacity") String enginecapacity) {
         return "car by engine capacity";
     }
 
-    @RequestMapping(value = "/enginetype", method = RequestMethod.GET)
+    @RequestMapping(value = "/enginetype")
     @GetMapping
     public String getCarByEngineType() {
         return "car by engine type";
     }
 
-    @RequestMapping(value = "/car", method = RequestMethod.PUT)
-    @GetMapping
+    @RequestMapping(value = "/car")
+    @PutMapping
     public String addCar() {
         return "added car";
     }
 
-    @RequestMapping(value = "/id", method = RequestMethod.POST)
-    @GetMapping
-    public String updateCarById() {
+    @RequestMapping(value = "/{id}")
+    @PostMapping
+    public String updateCarById(@PathVariable("id") Integer id) {
         return "car updated";
     }
 
-    @RequestMapping(value = "/id", method = RequestMethod.DELETE)
-    @GetMapping
-    public String delCarById() {
+    @RequestMapping(value = "/{id}")
+    @DeleteMapping
+    public String delCarById(@PathVariable("id") Integer id) {
         return "car removed";
     }
 
