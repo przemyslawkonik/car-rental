@@ -14,3 +14,7 @@ var ReqType = {
     PUT : 'PUT',
     DELETE : 'DELETE'
 };
+
+var ReqEndpoint = {
+    GET_CAR_LIST : '/cars'
+};
