@@ -22,9 +22,9 @@ public class CarController {
         return carRepository.getOne(id);
     }
 
-    @GetMapping("/{type}")
-    public CarType findByType(@PathVariable String type) {
-        return carTypeRepository.findByType(type);
+    @GetMapping("/{cartype}")
+    public Car findByCarType(@PathVariable String cartype) {
+        return carRepository.findByCarType(cartype);
     }
 
     /*@GetMapping("/{brand}/{model}")
