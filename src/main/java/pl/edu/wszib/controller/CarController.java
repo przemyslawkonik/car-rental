@@ -1,62 +1,61 @@
 package pl.edu.wszib.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import pl.edu.wszib.domain.entity.Car;
+import pl.edu.wszib.domain.entity.CarType;
+import pl.edu.wszib.domain.repository.CarRepository;
+import pl.edu.wszib.domain.repository.CarTypeRepository;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/cars")
 public class CarController {
 
-    //TODO: write implementation to all those methods
+    @Autowired
+    CarRepository carRepository;
 
-    @RequestMapping(value = "/id", method = RequestMethod.GET)
-    @GetMapping
-    public String getCarById() {
-        return "car by id";
+    @Autowired
+    CarTypeRepository carTypeRepository;
+
+    @GetMapping("/{id}")
+    public Car getCarById(@PathVariable Integer id) {
+        return carRepository.getOne(id);
     }
 
-    @RequestMapping(value = "/brand", method = RequestMethod.GET)
-    @GetMapping
-    public String getCarByBrand() {
-        return "car by brand";
+    @GetMapping("/{cartype}")
+    public Car getCarByCarType(@PathVariable String cartype) {
+        return carRepository.findByCarType(cartype);
     }
 
-    @RequestMapping(value = "/brand/model", method = RequestMethod.GET)
-    @GetMapping
-    public String getCarByModel() {
-        return "car by model";
+    @GetMapping("/{brand}/{model}")
+    public CarType getCarByModel(@PathVariable String brand, @PathVariable String model) {
+        return carTypeRepository.findByModel(brand, model);
     }
 
-    @RequestMapping(value = "/enginecapacity", method = RequestMethod.GET)
-    @GetMapping
-    public String getCarByEngineCapacity() {
-        return "car by engine capacity";
+    @GetMapping("/{enginecapacity}")
+    public CarType getCarByEngineCapacity(@PathVariable String enginecapacity) {
+        return carTypeRepository.findByEngineCapacity(enginecapacity);
     }
 
-    @RequestMapping(value = "/enginetype", method = RequestMethod.GET)
-    @GetMapping
-    public String getCarByEngineType() {
-        return "car by engine type";
+
+    @GetMapping("/{enginetype}")
+    public CarType getCarByEngineType(@PathVariable String enginetype) {
+        return carTypeRepository.findByEngineType(enginetype);
     }
 
-    @RequestMapping(value = "/car", method = RequestMethod.PUT)
-    @GetMapping
-    public String addCar() {
-        return "added car";
+    @PostMapping("/{cartype}")
+    public void addTypeOfCar(@PathVariable CarType cartype) {
+        carTypeRepository.save(cartype);
+
+        System.out.println("Car type saved!");
     }
 
-    @RequestMapping(value = "/id", method = RequestMethod.POST)
-    @GetMapping
-    public String updateCarById() {
-        return "car updated";
+    @PostMapping("/{car}")
+    public void addCar(@PathVariable Car car) {
+        carRepository.save(car);
+
+        System.out.println("car added");
     }
 
-    @RequestMapping(value = "/id", method = RequestMethod.DELETE)
-    @GetMapping
-    public String delCarById() {
-        return "car removed";
-    }
 
 }
