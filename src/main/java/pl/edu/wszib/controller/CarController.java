@@ -22,47 +22,39 @@ public class CarController {
         return carRepository.getOne(id);
     }
 
-    //TODO: write implementation to all those methods
-
     @GetMapping("/{type}")
-    public String getCarByType(@PathVariable String type) {
-        return "car by brand";
+    public CarType findByType(@PathVariable String type) {
+        return carTypeRepository.findByType(type);
     }
 
-    @RequestMapping(value = "/brand/{model}")
-    @GetMapping
-    public String getCarByModel(@PathVariable String model) {
-        return "car by model";
+    /*@GetMapping("/{brand}/{model}")
+    public CarType getCarByModel(@PathVariable String brand, @PathVariable String model) {
+        return carTypeRepository.findCarTypeByModel(brand, model);
     }
 
-    @RequestMapping(value = "/{enginecapacity}")
-    @GetMapping
-    public String getCarByEngineCapacity(@PathVariable String enginecapacity) {
-        return "car by engine capacity";
+    @GetMapping("/{enginecapacity}")
+    public CarType getCarByEngineCapacity(@PathVariable String enginecapacity) {
+        return carTypeRepository.findCarTypeByEngineCapacity(enginecapacity);
     }
 
-    @RequestMapping(value = "/{enginetype}")
-    @GetMapping
-    public String getCarByEngineType(@PathVariable("enginetype") String enginetype) {
-        return "car by engine type";
+    @GetMapping("/{enginetype}")
+    public CarType getCarByEngineType(@PathVariable String enginetype) {
+        return carTypeRepository.findCarTypeByEngineType(enginetype);
     }
 
-    @RequestMapping(value = "/{car}")
-    @PutMapping
-    public String addCar(@PathVariable("car") CarType car) {
-        return "added car";
-    }
+    @PostMapping("/{cartype}")
+    public void addTypeOfCar(@PathVariable CarType cartype) {
+        carTypeRepository.addTypeOfCar(cartype);
 
-    /*@RequestMapping(value = "/{id}")
-    @PostMapping
-    public String updateCarById(@PathVariable("id") Integer id) {
-        return "car updated";
+        System.out.println("car type added");
     }*/
 
-    /*@RequestMapping(value = "/{id}")
-    @DeleteMapping
-    public String delCarById(@PathVariable("id") Integer id) {
-        return "car removed";
+    /*@PostMapping("/{car}")
+    public void addCar(@PathVariable Car car) {
+        carRepository.addCar(car);
+
+        System.out.println("car added");
     }*/
+
 
 }
