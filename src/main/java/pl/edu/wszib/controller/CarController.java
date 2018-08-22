@@ -23,38 +23,39 @@ public class CarController {
     }
 
     @GetMapping("/{cartype}")
-    public Car findByCarType(@PathVariable String cartype) {
+    public Car getCarByCarType(@PathVariable String cartype) {
         return carRepository.findByCarType(cartype);
     }
 
-    /*@GetMapping("/{brand}/{model}")
+    @GetMapping("/{brand}/{model}")
     public CarType getCarByModel(@PathVariable String brand, @PathVariable String model) {
-        return carTypeRepository.findCarTypeByModel(brand, model);
+        return carTypeRepository.findByModel(brand, model);
     }
 
     @GetMapping("/{enginecapacity}")
     public CarType getCarByEngineCapacity(@PathVariable String enginecapacity) {
-        return carTypeRepository.findCarTypeByEngineCapacity(enginecapacity);
+        return carTypeRepository.findByEngineCapacity(enginecapacity);
     }
+
 
     @GetMapping("/{enginetype}")
     public CarType getCarByEngineType(@PathVariable String enginetype) {
-        return carTypeRepository.findCarTypeByEngineType(enginetype);
+        return carTypeRepository.findByEngineType(enginetype);
     }
 
     @PostMapping("/{cartype}")
     public void addTypeOfCar(@PathVariable CarType cartype) {
-        carTypeRepository.addTypeOfCar(cartype);
+        carTypeRepository.save(cartype);
 
-        System.out.println("car type added");
-    }*/
+        System.out.println("Car type saved!");
+    }
 
-    /*@PostMapping("/{car}")
+    @PostMapping("/{car}")
     public void addCar(@PathVariable Car car) {
-        carRepository.addCar(car);
+        carRepository.save(car);
 
         System.out.println("car added");
-    }*/
+    }
 
 
 }
