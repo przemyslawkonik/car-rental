@@ -8,5 +8,6 @@ import pl.edu.wszib.domain.entity.CarType;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
     Car findByCarType(String cartype);
-    //void addCar(Car car);
+
+    Car findCarByRegistrationNumber(String registrationnumber);
 }
