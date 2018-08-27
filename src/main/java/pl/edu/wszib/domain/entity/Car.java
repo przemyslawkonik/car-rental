@@ -19,6 +19,16 @@ public class Car {
     @ManyToOne
     private CarType carType;
 
+    public void copyFieldsState(Car car) {
+        this.registrationNumber = car.getRegistrationNumber();
+        this.serviceDate = car.getServiceDate();
+        this.color = car.getColor();
+        this.productionYear = car.getProductionYear();
+        this.mileage = car.getMileage();
+        this.rentPrice = car.getRentPrice();
+        this.carType = car.getCarType();
+    }
+
     public Integer getId() {
         return id;
     }
