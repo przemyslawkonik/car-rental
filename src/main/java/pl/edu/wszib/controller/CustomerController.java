@@ -3,7 +3,9 @@ package pl.edu.wszib.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.edu.wszib.domain.entity.Car;
 import pl.edu.wszib.domain.entity.Customer;
 import pl.edu.wszib.domain.repository.CustomerRepository;
 
@@ -70,6 +72,14 @@ public class CustomerController {
         return updatedCustomer;
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCustomer(@PathVariable Integer id) {
+        Customer customer = customerRepository.findById(id);
+
+        customerRepository.delete(customer);
+
+        return ResponseEntity.ok().build();
+    }
 
 
 
