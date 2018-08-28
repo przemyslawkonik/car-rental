@@ -53,4 +53,11 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void copyFieldsState(Customer customer) {
+        this.name = customer.getName();
+        this.surname = customer.getSurname();
+        this.phone = customer.getPhone();
+        this.email = customer.getEmail();
+    }
 }
