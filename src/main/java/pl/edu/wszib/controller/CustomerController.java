@@ -75,9 +75,9 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Integer id) {
         Customer customer = customerRepository.findById(id);
-
         customerRepository.delete(customer);
 
+        logger.info("Customer with id: " + id + " removed");
         return ResponseEntity.ok().build();
     }
 
