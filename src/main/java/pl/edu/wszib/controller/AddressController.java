@@ -9,7 +9,9 @@ public class AddressController {
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     @Autowired
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
+
+
 
 
 }

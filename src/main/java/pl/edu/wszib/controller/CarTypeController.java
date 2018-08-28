@@ -8,6 +8,8 @@ import pl.edu.wszib.domain.repository.CarTypeRepository;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/carTypes")
 public class CarTypeController {
     private static final Logger logger = LogManager.getLogger(CarTypeController.class);
 
