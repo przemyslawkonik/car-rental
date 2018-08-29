@@ -15,6 +15,19 @@ public class GetCustomerCommandExecutor implements CommandExecutor<GetCustomerCo
 
     @Override
     public GetCustomerCommandResult execute(GetCustomerCommand command) {
-        return new GetCustomerCommandResult(customerRepository.findOne(command.getId()));
+        Integer id = command.getId();
+        String email = command.getEmail();
+        String username = command.getUsername();
+
+        if (id != null) {
+            return new GetCustomerCommandResult(customerRepository.findOne(id));
+        }
+        if(username != null) {
+            return new GetCustomerCommandResult(customerRepository.findByName(username));
+        }
+        if (email != null) {
+            return new GetCustomerCommandResult(customerRepository.findByEmail(email));
+        }
+        return new GetCustomerCommandResult(null);
     }
 }

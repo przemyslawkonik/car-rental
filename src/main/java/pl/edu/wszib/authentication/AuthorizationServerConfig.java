@@ -1,4 +1,4 @@
-package pl.edu.wszib.config;
+package pl.edu.wszib.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

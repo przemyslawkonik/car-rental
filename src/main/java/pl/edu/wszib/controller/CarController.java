@@ -18,7 +18,7 @@ public class CarController {
     @Autowired
     private CarRepository carRepository;
 
-    @GetMapping("{/}")
+    @GetMapping("")
     public List<Car> getAllCars() {
         logger.info("Retrieving all cars from database");
         return carRepository.findAll();
