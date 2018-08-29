@@ -43,6 +43,6 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.parentAuthenticationManager(authenticationManager)
-                .userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder);
+                .userDetailsService(customUserDetailsService);//.passwordEncoder(passwordEncoder);
     }
 }

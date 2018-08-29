@@ -18,7 +18,7 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(Customer customer) {
         this.email = customer.getEmail();
         this.password = customer.getPassword();
-        this.authorities = createAuthorities(customer);
+        //this.authorities = createAuthorities(customer);
     }
 
     @Override
@@ -38,22 +38,22 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     private List<GrantedAuthority> createAuthorities(Customer customer) {
