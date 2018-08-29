@@ -6,4 +6,5 @@ import pl.edu.wszib.domain.entity.Address;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
+    Address findByCustomerId(Integer customerId);
 }
