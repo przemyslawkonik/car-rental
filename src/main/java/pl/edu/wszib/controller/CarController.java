@@ -16,7 +16,7 @@ public class CarController {
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     @Autowired
-    CarRepository carRepository;
+    private CarRepository carRepository;
 
     @GetMapping("{/}")
     public List<Car> getAllCars() {

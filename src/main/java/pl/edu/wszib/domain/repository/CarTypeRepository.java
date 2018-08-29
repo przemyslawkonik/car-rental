@@ -7,10 +7,13 @@ import pl.edu.wszib.domain.entity.CarType;
 @Repository
 public interface CarTypeRepository extends JpaRepository<CarType, Integer> {
 
+    CarType findById(Integer id);
+
+    CarType findByBrand(String brand);
+
     CarType findByModel(String brand, String model);
 
     CarType findByEngineCapacity(String enginecapacity);
 
     CarType findByEngineType(String enginetype);
-
 }

@@ -84,4 +84,11 @@ public class Customer {
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
     }
+
+    public void copyFieldsState(Customer customer) {
+        this.name = customer.getName();
+        this.surname = customer.getSurname();
+        this.phone = customer.getPhone();
+        this.email = customer.getEmail();
+    }
 }
