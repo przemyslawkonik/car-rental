@@ -1,15 +1,17 @@
 var app = angular.module('desktop', []);
 
-app.controller('overview-manager-controller', function($scope) {
-    $scope.$on(Event.LOAD_CONTENT, function(event, data) { $scope.menuContent = data });
+app.controller('overview-manager-controller', function($scope, $http) {
+    $scope.$on(Action.LOAD_CONTENT, function(event, data) { $scope.menuContent = data });
+
+    $scope.registerButtonClicked = function () {
+        $scope.menuContent = Component.REGISTER_BUTTON;
+    };
+
+    $scope.handleLogin = function () {
+        angular.element('#login-form').submit();
+    };
+
+    $http(new Request(ReqType.GET, ReqEndpoint.AUTHENTICATION)).then(function (value) {
+        $scope.isLogged = value.data;
+    })
 });
-
-var MenuComponent = {
-    TAB_1 : 'resources/desktop/test.html',
-    TAB_2 : 'resources/desktop/test2.html',
-    TAB_3 : 'resources/desktop/test3.html'
-};
-
-var Event = {
-    LOAD_CONTENT : 'LOAD_CONTENT'
-};

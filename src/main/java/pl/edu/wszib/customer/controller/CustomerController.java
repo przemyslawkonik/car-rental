@@ -5,7 +5,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.edu.wszib.authentication.service.AccountService;
 import pl.edu.wszib.customer.command.result.AddCustomerCommandResult;
 import pl.edu.wszib.customer.command.result.EditCustomerCommandResult;
 import pl.edu.wszib.customer.command.result.GetCustomerCommandResult;
@@ -14,12 +16,17 @@ import pl.edu.wszib.customer.service.CustomerService;
 import pl.edu.wszib.domain.entity.Customer;
 import pl.edu.wszib.util.Const;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private AccountService accountService;
 
     @GetMapping("")
     public ResponseEntity<GetPageableCustomerListCommandResult> getCustomers(@RequestParam(value = "page", defaultValue = Const.DEFAULT_PAGE) int page,
@@ -36,13 +43,18 @@ public class CustomerController {
     }
 
     @PostMapping("")
-    public ResponseEntity<AddCustomerCommandResult> addCustomer(@RequestBody Customer customer) {
-        return ResponseEntity.ok(customerService.addCustomer(customer));
+    public ResponseEntity<AddCustomerCommandResult> addCustomer(@Valid @RequestBody Customer customer, BindingResult bindingResult) {
+        return ResponseEntity.ok(accountService.register(customer, bindingResult));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EditCustomerCommandResult> editCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+    public ResponseEntity<EditCustomerCommandResult> editCustomer(@PathVariable Integer id, @Valid @RequestBody Customer customer, BindingResult bindingResult) {
         customer.setId(id);
-        return ResponseEntity.ok(customerService.editCustomer(customer));
+        return ResponseEntity.ok(accountService.edit(customer, bindingResult));
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<GetCustomerCommandResult> findCustomer(@RequestParam("email") String email) {
+        return ResponseEntity.ok(customerService.getCustomerByEmail(email));
     }
 }

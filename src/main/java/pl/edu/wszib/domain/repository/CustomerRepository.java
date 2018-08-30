@@ -10,11 +10,11 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     Customer findById(Integer id);
 
-    List<Customer> findByName(String name);
-
     List<Customer> findBySurname(String surname);
 
     Customer findByPhone(String phone);
 
     Customer findByEmail(String email);
+
+    Customer findByName(String username);
 }
