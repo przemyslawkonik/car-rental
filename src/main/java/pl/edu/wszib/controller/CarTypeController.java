@@ -13,8 +13,6 @@ import java.util.List;
 public class CarTypeController {
     private static final Logger logger = LogManager.getLogger(CarTypeController.class);
 
-    // Todo: we should possibly add rest of the CRUD methods
-
     @Autowired
     CarTypeRepository carTypeRepository;
 
