@@ -75,4 +75,13 @@ public class Order {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    public void copyFieldsState(Order order) {
+        this.rentalDate = order.getRentalDate();
+        this.returnDate = order.getReturnDate();
+        this.status = order.getStatus();
+        this.customer = order.getCustomer();
+        this.employee = order.getEmployee();
+        this.car = order.getCar();
+    }
 }
