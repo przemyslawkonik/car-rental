@@ -3,7 +3,9 @@ package pl.edu.wszib.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.edu.wszib.domain.entity.Car;
 import pl.edu.wszib.domain.entity.Employee;
 import pl.edu.wszib.domain.repository.EmployeeRepository;
 
@@ -60,6 +62,16 @@ public class EmployeeController {
         Employee updatedEmployee = employeeRepository.save(employee);
 
         return updatedEmployee;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEmployee (@PathVariable Integer id) {
+        logger.info("Removing employee with id: " + id + " from database");
+
+        Employee employee = employeeRepository.findById(id);
+        employeeRepository.delete(employee);
+
+        return ResponseEntity.ok().build();
     }
 
 }
