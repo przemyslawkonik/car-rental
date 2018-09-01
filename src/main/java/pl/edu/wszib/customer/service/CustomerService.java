@@ -34,6 +34,11 @@ public class CustomerService {
         return commandDispatcher.execute(command);
     }
 
+    public GetCustomerCommandResult getCustomerByEmail(String email) {
+        GetCustomerCommand command = new GetCustomerCommand(commandContextFactory.getCommandContext(), email);
+        return commandDispatcher.execute(command);
+    }
+
     public AddCustomerCommandResult addCustomer(Customer customer) {
         AddCustomerCommand command = new AddCustomerCommand(commandContextFactory.getCommandContext(), customer);
         return commandDispatcher.execute(command);

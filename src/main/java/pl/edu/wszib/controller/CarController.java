@@ -18,7 +18,7 @@ public class CarController {
     @Autowired
     private CarRepository carRepository;
 
-    @GetMapping("{/}")
+    @GetMapping("")
     public List<Car> getAllCars() {
         logger.info("Retrieving all cars from database");
         return carRepository.findAll();
@@ -69,7 +69,7 @@ public class CarController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCar(@PathVariable Integer id) {
-        logger.info("Removing car with id: " + id);
+        logger.info("Removing car with id: " + id + " from database");
 
         Car car = carRepository.findById(id);
         carRepository.delete(car);

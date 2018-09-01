@@ -1,0 +1,43 @@
+<h4 align="center">Create account</h4>
+<form name="form" ng-controller="register-controller" ng-submit="submitRegistration(form)">
+    <div class="form-group">
+        <label for="name">First name:</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter first name"
+               ng-class="{'error-input' : form.name.$invalid}" ng-model="account.name" required>
+        <span class="text-danger" ng-show="form.name.$invalid">First name is required</span>
+    </div>
+    <div class="form-group">
+        <label for="surname">Last name:</label>
+        <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter last name"
+               ng-class="{'error-input' : form.surname.$invalid}" ng-model="account.surname"
+               required>
+        <span class="text-danger" ng-show="form.surname.$invalid">Last name is required</span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+               ng-change="checkEmail()" ng-class="{'error-input' : form.email.$invalid}" ng-model="account.email"
+               required>
+        <span class="text-danger" ng-show="form.email.$invalid">Email is required</span>
+        <span ng-if="!isEmailUnique"
+              class="text-danger">Email already taken</span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+               ng-class="{'error-input' : form.password.$invalid}" ng-model="account.password" required>
+        <span class="text-danger" ng-show="form.password.$invalid">Password is required</span>
+    </div>
+    <div class="form-group">
+        <label for="password-confirm">Confirm password:</label>
+        <input type="password" class="form-control" id="password-confirm" name="passwordConfirmation"
+               placeholder="Enter password"
+               ng-class="{'error-input' : account.password !== account.passwordConfirmation}"
+               ng-model="account.passwordConfirmation">
+        <span ng-if="account.password !== account.passwordConfirmation"
+              class="text-danger">Both passwords must match</span>
+    </div>
+    <button type="submit" class="btn btn-default"
+            ng-disabled="form.$invalid || account.password !== account.passwordConfirmation || !isEmailUnique">Submit
+    </button>
+</form>

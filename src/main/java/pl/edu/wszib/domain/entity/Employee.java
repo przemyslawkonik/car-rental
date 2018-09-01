@@ -44,4 +44,10 @@ public class Employee {
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
+
+    public void copyFieldsState(Employee employeeDetails) {
+        this.name = employeeDetails.getName();
+        this.surname = employeeDetails.getSurname();
+        this.idNumber = employeeDetails.getIdNumber();
+    }
 }
