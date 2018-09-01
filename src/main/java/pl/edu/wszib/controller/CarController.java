@@ -31,31 +31,28 @@ public class CarController {
     }
 
     @GetMapping("/{servicedate}")
-    public Car getCarByServicedate(@PathVariable String servicedate) {
+    public List<Car> getCarByServicedate(@PathVariable String servicedate) {
         logger.info("Retrieving car with service date: " + servicedate);
-        return carRepository.findByServiceDate(servicedate);
+        return carRepository.findAllByServiceDate(servicedate);
     }
 
     @GetMapping("/{rentprice}")
-    public Car getCarByRentPrice(@PathVariable String rentprice) {
+    public List<Car> getCarByRentPrice(@PathVariable String rentprice) {
         logger.info("Retrieving car with rent price: " + rentprice);
-        return carRepository.findByRentPrice(rentprice);
+        return carRepository.findAllByRentPrice(rentprice);
     }
 
-    // todo: check if this is ok - will it get ma all car type occurrences?
     @GetMapping("/{cartype}")
     public List<Car> getCarByCarType(@PathVariable String cartype) {
         logger.info("Retrieving car type of: " + cartype);
-        return carRepository.findByCarType(cartype);
+        return carRepository.findAllByCarType(cartype);
     }
-
 
     @PostMapping("/")
     public Car addCar(@RequestBody Car car) {
         logger.info("Adding car");
         return carRepository.save(car);
     }
-
 
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable Integer id, @RequestBody Car carDetails) {

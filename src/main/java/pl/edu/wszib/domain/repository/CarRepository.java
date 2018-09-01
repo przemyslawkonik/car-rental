@@ -11,9 +11,9 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car, Integer> {
     Car findById(Integer id);
 
-    List<Car> findByCarType(String cartype);
+    List<Car> findAllByCarType(String cartype);
 
-    Car findByRentPrice(String rentprice);
+    List<Car> findAllByServiceDate(String servicedate);
 
-    Car findByServiceDate(String servicedate);
+    List<Car> findAllByRentPrice(String rentprice);
 }
