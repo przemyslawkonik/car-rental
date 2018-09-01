@@ -42,8 +42,9 @@ public class CarController {
         return carRepository.findByRentPrice(rentprice);
     }
 
+    // todo: check if this is ok - will it get ma all car type occurrences?
     @GetMapping("/{cartype}")
-    public Car getCarByCarType(@PathVariable String cartype) {
+    public List<Car> getCarByCarType(@PathVariable String cartype) {
         logger.info("Retrieving car type of: " + cartype);
         return carRepository.findByCarType(cartype);
     }
