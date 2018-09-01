@@ -46,7 +46,6 @@ public class CarTypeController {
         return carTypeRepository.findByEngineCapacity(enginecapacity);
     }
 
-
     @GetMapping("/{enginetype}")
     public CarType getCarByEngineType(@PathVariable String enginetype) {
         logger.info("Retrieving car type by engine type: " + enginetype);
