@@ -11,14 +11,13 @@ import pl.edu.wszib.domain.entity.Employee;
 import pl.edu.wszib.domain.entity.Order;
 import pl.edu.wszib.domain.repository.OrderRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
+
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     @Autowired
@@ -37,39 +36,39 @@ public class OrderController {
     }
 
     @GetMapping("/{rentalDate}")
-    public Order getOrderByRentalDate(@PathVariable Date rentalDate) {
-        logger.info("Retrieving ordes with rental date: " + rentalDate);
-        return orderRepository.findByRentalDate(rentalDate);
+    public List<Order> getOrdersByRentalDate(@PathVariable Date rentalDate) {
+        logger.info("Retrieving orders with rental date: " + rentalDate);
+        return orderRepository.findAllByRentalDate(rentalDate);
     }
 
     @GetMapping("/{returnDate}")
-    public Order getOrderBy(@PathVariable Date returnDate) {
-        logger.info("Retrieving ordes with return date: " + returnDate);
-        return orderRepository.findByReturnDate(returnDate);
+    public List<Order> getOrdersByReturnDate(@PathVariable Date returnDate) {
+        logger.info("Retrieving orders with return date: " + returnDate);
+        return orderRepository.findAllByReturnDate(returnDate);
     }
 
     @GetMapping("/{status}")
-    public Order getOrderBy(@PathVariable String status) {
-        logger.info("Retrieving ordes with status: " + status);
-        return orderRepository.findByStatus(status);
+    public List<Order> getOrdersByStatus(@PathVariable String status) {
+        logger.info("Retrieving orders with status: " + status);
+        return orderRepository.findAllByStatus(status);
     }
 
     @GetMapping("/{customer}")
-    public Order getOrderBy(@PathVariable Customer customer) {
+    public List<Order> getOrdersOfCustomer(@PathVariable Customer customer) {
         logger.info("Retrieving orders of customer: " + customer);
-        return orderRepository.findByCustomer(customer);
+        return orderRepository.findAllByCustomer(customer);
     }
 
     @GetMapping("/{employee}")
-    public Order getOrderBy(@PathVariable Employee employee) {
-        logger.info("Retrieving ordes of employee: " + employee);
-        return orderRepository.findByEmployee(employee);
+    public List<Order> getOrdersByEmployee(@PathVariable Employee employee) {
+        logger.info("Retrieving orders of employee: " + employee);
+        return orderRepository.findAllByEmployee(employee);
     }
 
     @GetMapping("/{car}")
-    public Order getOrderBy(@PathVariable Car car) {
-        logger.info("Retrieving ordes with car: " + car);
-        return orderRepository.findByCar(car);
+    public List<Order> getOrdersByCar(@PathVariable Car car) {
+        logger.info("Retrieving orders with car: " + car);
+        return orderRepository.findAllByCar(car);
     }
 
     @PostMapping("/")
