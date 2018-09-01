@@ -69,8 +69,9 @@ public class CarController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCar(@PathVariable Integer id) {
-        Car car = carRepository.findById(id);
+        logger.info("Removing car with id: " + id + " from database");
 
+        Car car = carRepository.findById(id);
         carRepository.delete(car);
 
         return ResponseEntity.ok().build();
