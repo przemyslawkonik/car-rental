@@ -8,9 +8,9 @@
         <th></th>
     </tr>
     <tr ng-repeat="car in carList">
-        <td>{{car.brand}}</td>
-        <td>{{car.model}}</td>
-        <td>{{car.engine}}</td>
+        <td>{{car.carType.brand}}</td>
+        <td>{{car.carType.model}}</td>
+        <td>{{car.carType.engineType}}</td>
         <td>{{car.productionYear}}</td>
         <td>{{car.rentPrice}}</td>
         <td><a href="#">more</a></td>
