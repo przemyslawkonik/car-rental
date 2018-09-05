@@ -14,9 +14,6 @@ import java.util.List;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    // I'm not adding fields which are using field idNumber from Employee class
-    // - because I'm not sure do we really need it
-
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
     @Autowired
@@ -35,15 +32,15 @@ public class EmployeeController {
     }
 
     @GetMapping("/{name}")
-    public Employee getEmployeeByName(@PathVariable String name) {
-        logger.info("Retrieving employee with name: " + name);
-        return employeeRepository.findByName(name);
+    public List<Employee> getEmployeesByName(@PathVariable String name) {
+        logger.info("Retrieving employees with name: " + name);
+        return employeeRepository.findAllByName(name);
     }
 
     @GetMapping("/{surname}")
-    public Employee getEmployeeBySurname(@PathVariable String surname) {
-        logger.info("Retrieving employee with surname: " + surname);
-        return employeeRepository.findBySurname(surname);
+    public List<Employee> getEmployeesBySurname(@PathVariable String surname) {
+        logger.info("Retrieving employees with surname: " + surname);
+        return employeeRepository.findAllBySurname(surname);
     }
 
     @PostMapping("/")

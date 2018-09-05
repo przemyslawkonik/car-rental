@@ -13,12 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/cars")
 public class CarController {
+
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     @Autowired
     private CarRepository carRepository;
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<Car> getAllCars() {
         logger.info("Retrieving all cars from database");
         return carRepository.findAll();
@@ -31,31 +32,28 @@ public class CarController {
     }
 
     @GetMapping("/{servicedate}")
-    public Car getCarByServicedate(@PathVariable String servicedate) {
-        logger.info("Retrieving car with service date: " + servicedate);
-        return carRepository.findByServiceDate(servicedate);
+    public List<Car> getCarByServicedate(@PathVariable String servicedate) {
+        logger.info("Retrieving cars with service date: " + servicedate);
+        return carRepository.findAllByServiceDate(servicedate);
     }
 
     @GetMapping("/{rentprice}")
-    public Car getCarByRentPrice(@PathVariable String rentprice) {
-        logger.info("Retrieving car with rent price: " + rentprice);
-        return carRepository.findByRentPrice(rentprice);
+    public List<Car> getCarByRentPrice(@PathVariable String rentprice) {
+        logger.info("Retrieving cars with rent price: " + rentprice);
+        return carRepository.findAllByRentPrice(rentprice);
     }
 
-    // todo: check if this is ok - will it get ma all car type occurrences?
     @GetMapping("/{cartype}")
     public List<Car> getCarByCarType(@PathVariable String cartype) {
-        logger.info("Retrieving car type of: " + cartype);
-        return carRepository.findByCarType(cartype);
+        logger.info("Retrieving cars type of: " + cartype);
+        return carRepository.findAllByCarType(cartype);
     }
-
 
     @PostMapping("/")
     public Car addCar(@RequestBody Car car) {
         logger.info("Adding car");
         return carRepository.save(car);
     }
-
 
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable Integer id, @RequestBody Car carDetails) {

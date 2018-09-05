@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/customers")
 public class AddressController {
+
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
-    // todo: re-think how we should organize that
     @Autowired
     private AddressRepository addressRepository;
 

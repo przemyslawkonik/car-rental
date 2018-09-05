@@ -4,16 +4,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.edu.wszib.domain.entity.CarType;
 
+import java.util.List;
+
 @Repository
 public interface CarTypeRepository extends JpaRepository<CarType, Integer> {
 
     CarType findById(Integer id);
 
-    CarType findByBrand(String brand);
+    List<CarType> findAllByBrand(String brand);
 
-    CarType findByModel(String brand, String model);
+    List<CarType> findAllByModel(String brand, String model);
 
-    CarType findByEngineCapacity(String enginecapacity);
+    List<CarType> findAllByEngineCapacity(String enginecapacity);
 
-    CarType findByEngineType(String enginetype);
+    List<CarType> findAllByEngineType(String enginetype);
 }

@@ -8,20 +8,21 @@ import pl.edu.wszib.domain.entity.Employee;
 import pl.edu.wszib.domain.entity.Order;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     Order findById(Integer id);
 
-    Order findByRentalDate(Date rentalDate);
+    List<Order> findAllByRentalDate(Date rentalDate);
 
-    Order findByReturnDate(Date returnDate);
+    List<Order> findAllByReturnDate(Date returnDate);
 
-    Order findByStatus(String status);
+    List<Order> findAllByStatus(String status);
 
-    Order findByCustomer(Customer customer);
+    List<Order> findAllByCustomer(Customer customer);
 
-    Order findByEmployee(Employee employee);
+    List<Order> findAllByEmployee(Employee employee);
 
-    Order findByCar(Car car);
+    List<Order> findAllByCar(Car car);
 }
