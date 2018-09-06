@@ -5,7 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.domain.entity.Address;
+import pl.edu.wszib.domain.entity.Customer;
 import pl.edu.wszib.domain.repository.AddressRepository;
+import pl.edu.wszib.domain.repository.CustomerRepository;
 
 import java.util.List;
 
@@ -18,10 +20,14 @@ public class AddressController {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     @GetMapping("/{customerId}/address")
     public Address getAddressByCustomerId(@PathVariable Integer customerId) {
         logger.info("Retrieving address by customer id: " + customerId);
-        return addressRepository.findByCustomerId(customerId);
+        Customer customer = customerRepository.findById(customerId);
+        return customer.getAddress();
     }
 
     @GetMapping("/addresses")
@@ -30,20 +36,17 @@ public class AddressController {
         return addressRepository.findAll();
     }
 
-    //todo: how to connect given address with particular customer ?!
-    @PostMapping("/{customerId}/address")
-    public Address addAddress (@PathVariable Integer customerId, @RequestBody Address address) {
-        logger.info("Adding new address");
-        return addressRepository.save(address);
-    }
-
-    //todo: how to update this address ?!
+    // TODO: 06.09.18 : check is this a good way to implement put address
     @PutMapping("/{customerId}/address")
-    public Address updateAddress (@PathVariable Integer customerId, @RequestBody Address address) {
+    public Address updateAddress (@PathVariable Integer customerId, @RequestBody Address updatedAddress) {
         logger.info("Update new address");
-        return addressRepository.save(address);
+        Customer customer = customerRepository.findById(customerId);
+        customer.setAddress(updatedAddress);
+        customerRepository.save(customer);
+
+        return customer.getAddress();
     }
 
-
+    // TODO: 06.09.18 : do we need here POST address?! or we will be adding new addresses while creating new Customers?!
 
 }
