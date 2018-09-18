@@ -20,6 +20,8 @@ public class Customer {
     private String password;
     @Transient
     private String passwordConfirmation;
+    @OneToOne
+    private Address address;
 
     public Integer getId() {
         return id;
@@ -83,6 +85,14 @@ public class Customer {
 
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void copyFieldsState(Customer customer) {
