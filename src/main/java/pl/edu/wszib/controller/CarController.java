@@ -6,9 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.domain.entity.Car;
+import pl.edu.wszib.domain.entity.Customer;
+import pl.edu.wszib.domain.entity.Order;
 import pl.edu.wszib.domain.repository.CarRepository;
+import pl.edu.wszib.domain.repository.CustomerRepository;
+import pl.edu.wszib.domain.repository.OrderRepository;
+import pl.edu.wszib.util.Const;
+import pl.edu.wszib.util.CookieUtils;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
@@ -18,6 +27,12 @@ public class CarController {
 
     @Autowired
     private CarRepository carRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("")
     public List<Car> getAllCars() {
@@ -76,4 +91,17 @@ public class CarController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/rent/{carId}")
+    public ResponseEntity<Boolean> rentCar(@RequestBody Order order, @PathVariable Integer carId, HttpServletRequest request) {
+        Car car = carRepository.findOne(carId);
+        Optional<Cookie> cookie = CookieUtils.getCookie(request, Const.CUSTOMER_SESSION_ID);
+        Integer customerId = cookie.isPresent() ? Integer.parseInt(cookie.get().getValue()) : null;
+        Customer customer = customerRepository.findOne(customerId);
+
+        order.setCar(car);
+        order.setCustomer(customer);
+        orderRepository.save(order);
+
+        return ResponseEntity.ok(Boolean.TRUE);
+    }
 }
