@@ -3,7 +3,9 @@ var Component = {
     TAB_2 : 'resources/desktop/test2.html',
     TAB_3 : 'resources/desktop/test3.html',
     REGISTER_BUTTON : 'resources/customer/account/register/account-register.html',
-    SUCCESS_REGISTER_INFO: 'resources/info/register_success.html'
+    SUCCESS_REGISTER_INFO: 'resources/info/register_success.html',
+    SUCCESS_RENT_CAR_INFO: 'resources/info/rent_car_success.html',
+    RENT_CAR_FORM: 'resources/car/car-rent-form.html'
 };
 
 var Action = {
@@ -19,7 +21,9 @@ var ReqType = {
 
 var ReqEndpoint = {
     GET_CAR_LIST : '/cars',
+    GET_SESSION_CUSTOMER : '/authentication/customer',
     REGISTER_ACCOUNT : '/customers',
+    RENT_CAR : '/cars/rent/',
     FIND_CUSTOMER : '/customers/find',
     AUTHENTICATION: '/authentication/login'
 };

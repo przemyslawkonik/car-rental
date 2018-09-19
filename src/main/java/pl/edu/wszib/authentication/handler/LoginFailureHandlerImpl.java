@@ -3,6 +3,7 @@ package pl.edu.wszib.authentication.handler;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+import pl.edu.wszib.util.Const;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -15,7 +16,7 @@ public class LoginFailureHandlerImpl implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        response.addCookie(new Cookie("isAuthenticated", "false"));
+        response.addCookie(new Cookie(Const.AUTHENTICATION_COOKIE, "false"));
         response.sendRedirect("/");
     }
 }

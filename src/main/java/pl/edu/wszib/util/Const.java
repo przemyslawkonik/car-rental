@@ -7,4 +7,5 @@ public class Const {
     public final static String DEFAULT_SORT_DIRECTION = "desc";
 
     public final static String AUTHENTICATION_COOKIE = "isAuthenticated";
+    public final static String CUSTOMER_SESSION_ID = "customerSessionId";
 }
