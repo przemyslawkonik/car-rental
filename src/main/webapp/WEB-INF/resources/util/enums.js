@@ -1,7 +1,6 @@
 var Component = {
     TAB_1 : 'resources/car/car-list.html',
-    TAB_2 : 'resources/desktop/test2.html',
-    TAB_3 : 'resources/desktop/test3.html',
+    TAB_2 : 'resources/customer/orders/customer-orders.html',
     REGISTER_BUTTON : 'resources/customer/account/register/account-register.html',
     SUCCESS_REGISTER_INFO: 'resources/info/register_success.html',
     SUCCESS_RENT_CAR_INFO: 'resources/info/rent_car_success.html',
@@ -25,5 +24,7 @@ var ReqEndpoint = {
     REGISTER_ACCOUNT : '/customers',
     RENT_CAR : '/cars/rent/',
     FIND_CUSTOMER : '/customers/find',
-    AUTHENTICATION: '/authentication/login'
+    GET_CUSTOMER_ORDERS : '/orders/customer',
+    AUTHENTICATION: '/authentication/login',
+    AUTHENTICATED_CUSTOMER: '/authentication/customer'
 };

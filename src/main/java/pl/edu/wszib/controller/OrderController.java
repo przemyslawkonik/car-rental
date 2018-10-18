@@ -53,10 +53,11 @@ public class OrderController {
         return orderRepository.findAllByStatus(status);
     }
 
-    @GetMapping("/{customer}")
-    public List<Order> getOrdersOfCustomer(@PathVariable Customer customer) {
+    @PostMapping("/customer")
+    public List<Order> getOrdersOfCustomer(@RequestBody Customer customer) {
         logger.info("Retrieving orders of customer: " + customer);
-        return orderRepository.findAllByCustomer(customer);
+        List<Order> result = orderRepository.findAllByCustomer(customer);
+        return result;
     }
 
     @GetMapping("/{employee}")

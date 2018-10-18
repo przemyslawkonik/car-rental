@@ -1,0 +1,17 @@
+<table class="table table-dark table-hover" ng-controller="customer-orders-controller">
+    <tr>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Rent price</th>
+        <th>Date from</th>
+        <th>Date to</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="order in orderList">
+        <td>{{order.car.carType.brand}}</td>
+        <td>{{order.car.carType.model}}</td>
+        <td>{{order.car.rentPrice}}</td>
+        <td>{{order.rentalDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{order.returnDate | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+</table>
