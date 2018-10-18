@@ -6,6 +6,11 @@ app.controller('overview-manager-controller', function ($scope, $http) {
         $scope.model = model;
     });
 
+    $scope.handleHomepageClick = function () {
+        $scope.menuContent = null;
+        $scope.model = null;
+    };
+
     $scope.registerButtonClicked = function () {
         $scope.menuContent = Component.REGISTER_BUTTON;
     };
@@ -16,6 +21,11 @@ app.controller('overview-manager-controller', function ($scope, $http) {
 
     $http(new Request(ReqType.GET, ReqEndpoint.AUTHENTICATION)).then(function (value) {
         $scope.isLogged = value.data;
+        if($scope.isLogged) {
+            $http(new Request(ReqType.GET, ReqEndpoint.AUTHENTICATED_CUSTOMER)).then(function (value) {
+                $scope.authenticatedCustomer = value.data;
+            });
+        }
     });
 
     $scope.submitRentCar = function (form) {

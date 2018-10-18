@@ -1,4 +1,4 @@
-app.controller('main-menu-controller', function ($scope) {
+app.controller('main-menu-controller', function ($scope, $http) {
     $scope.firstTabClicked = function () {
         $scope.$emit(Action.LOAD_CONTENT, Component.TAB_1);
     };
@@ -7,8 +7,8 @@ app.controller('main-menu-controller', function ($scope) {
         $scope.$emit(Action.LOAD_CONTENT, Component.TAB_2);
     };
 
-    $scope.thirdTabClicked = function () {
-        $scope.$emit(Action.LOAD_CONTENT, Component.TAB_3);
-    };
+    $http(new Request(ReqType.GET, ReqEndpoint.AUTHENTICATION)).then(function (value) {
+        $scope.isLogged = value.data;
+    });
 });
 

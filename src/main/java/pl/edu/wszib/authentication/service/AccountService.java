@@ -16,6 +16,8 @@ import pl.edu.wszib.customer.command.result.EditCustomerCommandResult;
 import pl.edu.wszib.customer.command.result.GetCustomerCommandResult;
 import pl.edu.wszib.domain.entity.Customer;
 
+import java.util.Optional;
+
 @Service
 public class AccountService implements UserDetailsService {
 
@@ -30,6 +32,11 @@ public class AccountService implements UserDetailsService {
         GetCustomerCommand command = new GetCustomerCommand(commandContextFactory.getCommandContext());
         command.setUsername(username);
         GetCustomerCommandResult result = commandDispatcher.execute(command);
+        if(!Optional.ofNullable(result.getCustomer()).isPresent()) {
+            command = new GetCustomerCommand(commandContextFactory.getCommandContext());
+            command.setEmail(username);
+            result = commandDispatcher.execute(command);
+        }
         return new CustomUserDetails(result.getCustomer());
     }
 
