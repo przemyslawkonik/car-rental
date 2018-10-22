@@ -1,4 +1,6 @@
 #Car Rental
+
+
 Aplikacja jest zrobiona na potrzeby wypożyczalni samochodów.
 Umożliwia stworzenie użytkownika – w tym celu musi on uzupełnić formularz rejestracyjny 
 w odpowiedniej zakładce (dane wprowadzane do formularza są sprawdzane pod kątem poprawności). 
