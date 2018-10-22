@@ -47,6 +47,4 @@ public class AddressController {
         return customer.getAddress();
     }
 
-    // TODO: 06.09.18 : do we need here POST address?! or we will be adding new addresses while creating new Customers?!
-
 }
